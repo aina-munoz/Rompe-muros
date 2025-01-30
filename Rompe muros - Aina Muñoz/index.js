@@ -1,11 +1,11 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
 
 canvas.height = 512;
 canvas.width = 448;
 
 
-const radiPilota = 12;
+let radiPilota = 12;
 let x = canvas.width / 2
 let y = canvas.height - 30
 
@@ -14,8 +14,8 @@ let dx = 3
 let dy = -3
 
 
-const amplePala = 50;
-const alturaPala = 10;
+let amplePala = 50;
+let alturaPala = 10;
 
 let sensibilitat = 8;
 let dreta = false;
@@ -94,6 +94,32 @@ function inicialitzadorEvents(){
         if(event.key == 'ArrowLeft' || event.key == 'a'){
             esquerra = true;
         }
+        if(event.key == 'q'){
+            amplePala = amplePala*2;
+        }
+        if(event.key == 'e'){
+            amplePala = amplePala/2;
+        }
+        if(event.key == 'z'){
+            radiPilota = radiPilota*2;
+        }
+        if(event.key == 'c'){
+            radiPilota = radiPilota/2;
+        }
+        if(event.key == 'i'){
+            sensibilitat = sensibilitat*2;
+        }
+        if(event.key == 'p'){
+            sensibilitat = sensibilitat/2;
+        }
+        if(event.key == 'k'){
+            dx = dx*2;
+            dy = dy*2;
+        }
+        if(event.key == 'ñ'){
+            dx = dx/2;
+            dy = dy/2;
+        }
     }
 
     function soltar(event){
@@ -107,9 +133,10 @@ function inicialitzadorEvents(){
 }
 
 
+
 function pintarCanvas(){
     console.log("Hola");
-    borrarPantalla()
+    borrarPantalla();
     pintarPilota();
     pintarPala();
     pintarMurs();

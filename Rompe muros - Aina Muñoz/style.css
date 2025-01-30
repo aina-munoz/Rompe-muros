@@ -1,11 +1,22 @@
 body{
     background-color: rgb(166, 88, 240);
+    text-align: center;
 }
 
 canvas{
     border: 6px solid rgba(59, 4, 110, 0.87);
     margin: 0 auto;
-    margin-top: 8rem;
+    margin-top: 2rem;
     display: block;
     border-bottom: transparent;
+}
+
+h1{
+    margin: 0 auto;
+    margin-top: 7.5rem;
+    font-size: 50px;
+    font-weight: 250;
+    letter-spacing: .3rem;
+    font-family: fantasy;
+    color: rgba(59, 4, 110, 0.87);;
 }
