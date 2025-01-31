@@ -120,6 +120,16 @@ function inicialitzadorEvents(){
             dx = dx/2;
             dy = dy/2;
         }
+        if(event.key == '0'){
+            let dx2 = dx;
+            let dy2 = dy
+            dx = 0;
+            dy = 0;
+            setTimeout(() => {
+                dx = dx2;
+                dy = dy2;
+            }, 3000)
+        }
     }
 
     function soltar(event){
