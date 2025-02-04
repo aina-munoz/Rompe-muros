@@ -5,24 +5,26 @@ canvas.height = 512;
 canvas.width = 448;
 
 
-let radiPilota = 12;
+let radiPilota = 10;
 let x = canvas.width / 2
 let y = canvas.height - 30
 
 
-let dx = 3
-let dy = -3
+let dx = 2
+let dy = -2
 
 
 let amplePala = 50;
 let alturaPala = 10;
 
-let sensibilitat = 8;
+let sensibilitat = 6;
 let dreta = false;
 let esquerra = false;
 
 let palaX = (canvas.width - amplePala) / 2;
 let palaY = canvas.height - alturaPala - 10;
+
+let vidas = 3
 
 
 function pintarPilota(){
@@ -58,11 +60,22 @@ function movimentPilota(){
         dy = -dy
     }
 
-    if(y + dy > canvas.height){
-        console.log("GAME OVER")
-        document.location.reload();
+    if( y == palaY && x >= palaX && x <= palaX+amplePala){
+        dy = -dy
+    }else if(y > canvas.height){
+        vidas--
+    
+        if(vidas == 0){
+            console.log("GAME OVER")
+            document.location.reload();
+        }
+        dx = 2;
+        dy = -2
+        x = canvas.width / 2
+        y = canvas.height - 30
     }
-
+        
+    
     x += dx;
     y += dy;
 }
@@ -153,6 +166,7 @@ function pintarCanvas(){
     deteccioColisio();
     movimentPilota();
     movimentPala();
+    ctx.fillText("Vidas: " +vidas ,12,12);
     window.requestAnimationFrame(pintarCanvas);
 }
 
