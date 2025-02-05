@@ -5,6 +5,40 @@ canvas.height = 512;
 canvas.width = 448;
 
 
+let colors = ["#626567", "#d2b4de", "#979a9a", "#d2b4de", "#d0d3d4", "#a569bd", "#d7dbdd", "#76448a", "##5b2c6f", "#6c3483"]
+
+
+const  filas = 6
+const columnes = 12;
+const ampleMur = 30;
+const alturaMur = 14;
+const margeTMur = 80;
+const margeEMur = 30;
+const sepMurs = 2;
+
+
+const murs = []
+const ESTAT_MUR = {
+    DESTRUIT: 0,
+    SHOW: 1
+}
+
+for(let c=0; c<columnes; c++){
+    murs[c] = [];
+    for(let f=0; f<filas; f++){
+        const color = colors[Math.floor(Math.random()*10)]
+        const murX = margeEMur+c*(ampleMur+sepMurs)
+        const murY = margeTMur+f*(alturaMur+sepMurs)
+        murs[c][f] = {
+            x: murX,
+            y: murY,
+            status: ESTAT_MUR.SHOW,
+            color: color
+        }
+    }
+}
+
+
 let radiPilota = 10;
 let x = canvas.width / 2
 let y = canvas.height - 30
@@ -24,7 +58,7 @@ let esquerra = false;
 let palaX = (canvas.width - amplePala) / 2;
 let palaY = canvas.height - alturaPala - 10;
 
-let vidas = 3
+let vidas = 3;
 
 
 function pintarPilota(){
@@ -43,7 +77,17 @@ function pintarPala(){
 
 
 function pintarMurs(){
-
+    for(let c=0; c<columnes; c++){
+        for(let f=0; f<filas; f++){
+            const murActual = murs[c][f];
+            if(murActual.status == ESTAT_MUR.DESTRUIT){
+                continue;
+            }
+            ctx.fillStyle = murActual.color;
+            ctx.rect(murActual.x,murActual.y,ampleMur,alturaMur)
+            ctx.fill();
+        }
+    }
 }
 
 
