@@ -4,8 +4,10 @@ let ctx = canvas.getContext("2d");
 canvas.height = 512;
 canvas.width = 448;
 
+const sprite = document.getElementById ("sprite");
+const mur = document.getElementById ("murs")
 
-let colors = ["#626567", "#d2b4de", "#979a9a", "#d2b4de", "#d0d3d4", "#a569bd", "#d7dbdd", "#76448a", "##5b2c6f", "#6c3483"]
+let colors = ["#FFF"]
 
 
 const  filas = 6
@@ -24,19 +26,21 @@ const ESTAT_MUR = {
 }
 
 for(let c=0; c<columnes; c++){
-    murs[c] = [];
-    for(let f=0; f<filas; f++){
-        const color = colors[Math.floor(Math.random()*10)]
+    murs [c] = [];
+    for (let f=0; f<filas; f++){
+        let r  = Math.floor(Math.random()*3)
         const murX = margeEMur+c*(ampleMur+sepMurs)
         const murY = margeTMur+f*(alturaMur+sepMurs)
-        murs[c][f] = {
+        murs  [c][f] = {
             x: murX,
             y: murY,
             status: ESTAT_MUR.SHOW,
-            color: color
+            color: r,
+
         }
     }
 }
+
 
 
 let radiPilota = 10;
@@ -61,42 +65,81 @@ let palaY = canvas.height - alturaPala - 10;
 let vidas = 3;
 
 
-function pintarPilota(){
+function pintarPilota (){
     ctx.beginPath();
     ctx.arc(x, y, radiPilota, 0, Math.PI*2);
     ctx.fillStyle = "#FFF";
-    ctx.fill();
+    ctx.fill ();
     ctx.closePath();
 }
 
 
-function pintarPala(){
-    ctx.fillStyle = "#FFF";
-    ctx.fillRect(palaX, palaY, amplePala, alturaPala);
+function pintarPala (){
+    //ctx.fillStyle = " #e53800  ";
+    //ctx.fillRect (palaX, palaY,amplePala, alturaPala);
+    ctx.drawImage(
+        sprite,
+        0,
+        0,   
+        169,
+        77,
+        palaX,
+        palaY,
+        amplePala,
+        alturaPala
+    )
 }
 
 
-function pintarMurs(){
+function pintarMurs (){
     for(let c=0; c<columnes; c++){
-        for(let f=0; f<filas; f++){
+        for (let f=0; f<filas; f++){
             const murActual = murs[c][f];
-            if(murActual.status == ESTAT_MUR.DESTRUIT){
+            if (murActual.status == ESTAT_MUR.DESTRUIT){
                 continue;
             }
-            ctx.fillStyle = murActual.color;
-            ctx.rect(murActual.x,murActual.y,ampleMur,alturaMur)
-            ctx.fill();
+            let clipX = murActual.color * 150
+            ctx.drawImage(
+                mur,
+                clipX,
+                0,
+                100,
+                100,
+                murActual.x,
+                murActual.y,
+                ampleMur,
+                alturaMur
+            )
+            //ctx.fillStyle = murActual.color;
+           // ctx.rect(murActual.x,murActual.y,ampleMur,alturaMur)
+            //ctx.fill();
         }
     }
 }
 
 
 function deteccioColisio(){
+    for(let c=0; c<columnes; c++){
+        for (let f=0; f<filas; f++){
+            const murActual = murs[c][f];
+            if (murActual.status == ESTAT_MUR.DESTRUIT){
+                continue;
+            }
+            
+ /*           const mateixaXMur = ;
+            const mateixaYMur = ;
 
+            if(mateixaXMur && mateixaXMur){
+                dy = - dy;
+                murActual.status = ESTAT_MUR.DESTRUIT
+            }*/
+
+        }
+    }
 }
 
 
-function movimentPilota(){
+function movimentPilota (){
     if(x + dx >= canvas.width || x + dx <= 0){
         dx = -dx
     }
@@ -125,13 +168,15 @@ function movimentPilota(){
 }
 
 
-function movimentPala(){
-    if(dreta && palaX < canvas.width - amplePala){
+function movimentPala (){
+    if (dreta && palaX < canvas.width - amplePala){
         palaX += sensibilitat
-    }else if(esquerra && palaX > 0){
+    }else if (esquerra && palaX > 0){
         palaX -= sensibilitat
     }
+
 }
+
 
 
 function borrarPantalla(){
@@ -202,9 +247,9 @@ function inicialitzadorEvents(){
 
 
 function pintarCanvas(){
-    console.log("Hola");
-    borrarPantalla();
-    pintarPilota();
+    console.log("Hi");
+    borrarPantalla ();
+    pintarPilota ();
     pintarPala();
     pintarMurs();
     deteccioColisio();
@@ -213,7 +258,5 @@ function pintarCanvas(){
     ctx.fillText("Vidas: " +vidas ,12,12);
     window.requestAnimationFrame(pintarCanvas);
 }
-
-
 pintarCanvas();
 inicialitzadorEvents();

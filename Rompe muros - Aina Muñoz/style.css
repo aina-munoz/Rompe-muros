@@ -1,14 +1,15 @@
 body{
-    background-color: rgb(166, 88, 240);
+    background-color: rgb(188, 204, 168);
     text-align: center;
 }
 
 canvas{
-    border: 6px solid rgba(59, 4, 110, 0.87);
+    border: 6px solid rgba(37, 53, 17, 0.87);
     margin: 0 auto;
     margin-top: 2rem;
     display: block;
     border-bottom: transparent;
+    background-image: url(img/fondo.jpg);
 }
 
 h1{
@@ -18,5 +19,5 @@ h1{
     font-weight: 250;
     letter-spacing: .3rem;
     font-family: fantasy;
-    color: rgba(59, 4, 110, 0.87);;
+    color: rgba(37, 53, 17, 0.87);
 }
