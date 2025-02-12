@@ -10,6 +10,7 @@ const mur = document.getElementById ("murs")
 let colors = ["#FFF"]
 
 
+
 const  filas = 6
 const columnes = 12;
 const ampleMur = 30;
@@ -43,7 +44,7 @@ for(let c=0; c<columnes; c++){
 
 
 
-let radiPilota = 10;
+let radiPilota = 6;
 let x = canvas.width / 2
 let y = canvas.height - 30
 
@@ -52,8 +53,8 @@ let dx = 2
 let dy = -2
 
 
-let amplePala = 50;
-let alturaPala = 10;
+let amplePala = 60;
+let alturaPala = 20;
 
 let sensibilitat = 6;
 let dreta = false;
@@ -68,15 +69,13 @@ let vidas = 3;
 function pintarPilota (){
     ctx.beginPath();
     ctx.arc(x, y, radiPilota, 0, Math.PI*2);
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = "rgba(29, 43, 12, 0.87)";
     ctx.fill ();
     ctx.closePath();
 }
 
 
 function pintarPala (){
-    //ctx.fillStyle = " #e53800  ";
-    //ctx.fillRect (palaX, palaY,amplePala, alturaPala);
     ctx.drawImage(
         sprite,
         0,
@@ -110,9 +109,6 @@ function pintarMurs (){
                 ampleMur,
                 alturaMur
             )
-            //ctx.fillStyle = murActual.color;
-           // ctx.rect(murActual.x,murActual.y,ampleMur,alturaMur)
-            //ctx.fill();
         }
     }
 }
@@ -126,13 +122,17 @@ function deteccioColisio(){
                 continue;
             }
             
- /*           const mateixaXMur = ;
-            const mateixaYMur = ;
+            const mateixaXMur = x > murActual.x && x < murActual.x + ampleMur;
+            const mateixaYMur = y > murActual.y && y < murActual.y + alturaMur
 
-            if(mateixaXMur && mateixaXMur){
+            if(mateixaXMur && mateixaYMur){
                 dy = - dy;
                 murActual.status = ESTAT_MUR.DESTRUIT
-            }*/
+
+                var audio = document.getElementById("audio2");
+                audio.play();
+
+            }
 
         }
     }
@@ -151,6 +151,9 @@ function movimentPilota (){
         dy = -dy
     }else if(y > canvas.height){
         vidas--
+
+        var audio = document.getElementById("audio");
+        audio.play();
     
         if(vidas == 0){
             console.log("GAME OVER")

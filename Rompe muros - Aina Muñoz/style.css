@@ -4,7 +4,7 @@ body{
 }
 
 canvas{
-    border: 6px solid rgba(37, 53, 17, 0.87);
+    border: 4px solid rgba(37, 53, 17, 0.87);
     margin: 0 auto;
     margin-top: 2rem;
     display: block;
@@ -19,5 +19,5 @@ h1{
     font-weight: 250;
     letter-spacing: .3rem;
     font-family: fantasy;
-    color: rgba(37, 53, 17, 0.87);
+    color: rgba(29, 43, 12, 0.87);
 }
