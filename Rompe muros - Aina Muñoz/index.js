@@ -46,7 +46,7 @@ for(let c=0; c<columnes; c++){
 
 let radiPilota = 6;
 let x = canvas.width / 2
-let y = canvas.height - 30
+let y = canvas.height - 35
 
 
 let dx = 2
@@ -131,7 +131,6 @@ function deteccioColisio(){
 
                 var audio = document.getElementById("audio2");
                 audio.play();
-
             }
 
         }
@@ -159,13 +158,13 @@ function movimentPilota (){
             console.log("GAME OVER")
             document.location.reload();
         }
+
         dx = 2;
         dy = -2
         x = canvas.width / 2
         y = canvas.height - 30
     }
         
-    
     x += dx;
     y += dy;
 }
