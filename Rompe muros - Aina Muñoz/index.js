@@ -6,8 +6,11 @@ canvas.width = 448;
 
 const sprite = document.getElementById ("sprite");
 const mur = document.getElementById ("murs")
+let ball = document.getElementById("balls")
 
 let colors = ["#FFF"]
+
+let color;
 
 
 
@@ -66,10 +69,10 @@ let palaY = canvas.height - alturaPala - 10;
 let vidas = 3;
 
 
-function pintarPilota (){
+function pintarPilota(color){
     ctx.beginPath();
     ctx.arc(x, y, radiPilota, 0, Math.PI*2);
-    ctx.fillStyle = "rgba(29, 43, 12, 0.87)";
+    ctx.fillStyle = color;
     ctx.fill ();
     ctx.closePath();
 }
@@ -250,8 +253,8 @@ function inicialitzadorEvents(){
 
 function pintarCanvas(){
     console.log("Hi");
-    borrarPantalla ();
-    pintarPilota ();
+    borrarPantalla();
+    pintarPilota(color);
     pintarPala();
     pintarMurs();
     deteccioColisio();
@@ -262,3 +265,9 @@ function pintarCanvas(){
 }
 pintarCanvas();
 inicialitzadorEvents();
+
+document.getElementById("pilotes").addEventListener("click",function(){
+    color =  document.getElementById("pilota").value
+    console.log(color)
+    pintarPilota(color)
+})
