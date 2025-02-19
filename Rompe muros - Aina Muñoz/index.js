@@ -227,7 +227,7 @@ function inicialitzadorEvents(){
             dx = dx/2;
             dy = dy/2;
         }
-        if(event.key == '0'){
+        if(event.key == 'm'){
             let dx2 = dx;
             let dy2 = dy
             dx = 0;

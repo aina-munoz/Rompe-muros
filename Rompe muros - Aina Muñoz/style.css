@@ -6,15 +6,15 @@ body{
 canvas{
     border: 4px solid rgba(37, 53, 17, 0.87);
     margin: 0 auto;
-    margin-top: 1.75rem;
-    display: block;
+    display: flex;
     border-bottom: transparent;
     background-image: url(img/fondo.jpg);
 }
 
 h1{
     margin: 0 auto;
-    margin-top: 7.5rem;
+    margin-top: 8rem;
+    margin-bottom: 2rem;
     font-size: 50px;
     font-weight: 250;
     letter-spacing: .3rem;
@@ -31,4 +31,16 @@ select, button{
     background-color: rgb(156, 165, 143);
     color: #000;
     font-size: 14px;
+}
+
+section{
+    display: block;
+    background-color: rgb(156, 165, 143);
+    border: 4px solid rgba(37, 53, 17, 0.87);
+    margin-top: -49rem;
+    margin-right: 95rem;
+    color: #000;
+    font-weight: 150;
+    font-family: fantasy;
+    letter-spacing: .05rem;
 }
